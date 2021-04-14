@@ -9,6 +9,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "virus2"
     },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAIAAAAAAAAAIAAAAAAAAAAADwAAAAAAAAANAAAA7gAAiA3QAADu/Q2IiNcAAODd3YiIAAAA7t0NiIjXAADu3g4IDdAAAODuDoANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "heros"
+    },
+    "image4": {
+        "data": "hwQQABAAAAAAAAAAAPD/AAAAAAAAwLEAAAD//w8f+wAA/9299R+xAPB1d929H/sA8Hd3vRVV8Q9/d3f3H73/D393d9cR+///f3d31xGx//9/d3f3H/v///B3d70VVbEP8HV33b0f+wAA/9299R+xAAAA//8PH/sAAAAAAADPsQAAAAAAAPD/AA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "extraterrestre"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",

@@ -1,3 +1,10 @@
+namespace SpriteKind {
+    export const ralentisseur = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.spray)
+    info.changeLifeBy(1)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . 
@@ -10,6 +17,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . 2 . 2 2 . 2 . 
         `, ship, 0, -140)
     projectile.startEffect(effects.spray, 100)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.ralentisseur, function (sprite, otherSprite) {
+    scene.cameraShake(4, 500)
+    otherSprite.destroy(effects.spray)
+    ship.setVelocity(100, 50)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.destroy()
@@ -24,6 +36,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let virus: Sprite = null
 let extraterrestre: Sprite = null
+let asteroidgentil: Sprite = null
 let projectile: Sprite = null
 let ship: Sprite = null
 let asteroids = [
@@ -37,10 +50,32 @@ sprites.space.spaceAsteroid3
 ship = sprites.create(assets.image`heros`, SpriteKind.Player)
 ship.setFlag(SpriteFlag.StayInScreen, true)
 ship.bottom = 120
-controller.moveSprite(ship, 100, 100)
+controller.moveSprite(ship, 100, 0)
 info.setLife(5)
 effects.starField.startScreenEffect()
-game.onUpdateInterval(1900, function () {
+game.onUpdateInterval(5004, function () {
+    asteroidgentil = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . f f f . . . . . . f f f . . 
+        . . f . e e e e e e e e . f . . 
+        . . f f . . e e e e . . f f . . 
+        . f f . d d . . . . d d . f f . 
+        f f . . d 8 . . . . 8 d . . f f 
+        f . . . . . . d d . . . . . . f 
+        f . . . . . . . . . . . . . . f 
+        f . f . . d d d d d d . . f . f 
+        f . f f f . . e e . . f f f . f 
+        f f f f f e e e e e e f f f f f 
+        . . . . f f f f f f f f . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, 0, 75)
+    asteroidgentil.setKind(SpriteKind.Food)
+    asteroidgentil.x = randint(10, 150)
+})
+game.onUpdateInterval(18040, function () {
     extraterrestre = sprites.createProjectileFromSide(assets.image`extraterrestre`, 0, 75)
     extraterrestre.setKind(SpriteKind.Enemy)
     extraterrestre.x = randint(10, 150)
@@ -52,6 +87,6 @@ game.onUpdateInterval(1000, function () {
 })
 game.onUpdateInterval(3005, function () {
     virus = sprites.createProjectileFromSide(assets.image`virus2`, 0, 75)
-    virus.setKind(SpriteKind.Enemy)
+    virus.setKind(SpriteKind.ralentisseur)
     virus.x = randint(10, 150)
 })

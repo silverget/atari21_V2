@@ -1,10 +1,6 @@
 namespace SpriteKind {
     export const ralentisseur = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Food, SpriteKind.Player, function (sprite, otherSprite) {
-    otherSprite.destroy(effects.spray)
-    info.changeLifeBy(1)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . 
@@ -21,7 +17,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.ralentisseur, function (sprite, otherSprite) {
     scene.cameraShake(4, 500)
     otherSprite.destroy(effects.spray)
-    ship.setVelocity(100, 50)
+    ship.setVelocity(87, 50)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.spray)
+    info.changeLifeBy(1)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.destroy()
